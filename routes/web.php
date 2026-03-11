@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\AuthController as AdminAuthController;
 use App\Http\Controllers\User\Auth\AuthController;
 use App\Http\Controllers\User\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +16,20 @@ Route::prefix('auth')->group(function () {
         Route::get('register', [RegisterController::class, 'index'])->name('user.register.index');
         Route::post('register', [RegisterController::class, 'store'])->name('user.register.store');
     });
+});
 
-    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::middleware('auth:web')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('user.auth.logout');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::prefix('auth')->middleware('guest')->group(function () {
+        Route::get('login', [AdminAuthController::class, 'index'])->name('admin.auth.index');
+        Route::post('login', [AdminAuthController::class, 'login'])->name('admin.auth.login');
+    });
+    Route::middleware('auth:web-admin')->group(function () {
+        Route::get('logout', [AuthController::class, 'logout'])->name('admin.auth.logout');
+    });
 });
 
 

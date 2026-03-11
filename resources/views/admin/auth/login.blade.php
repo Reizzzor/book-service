@@ -1,4 +1,4 @@
-@extends('layouts.app-admin-layout')
+@extends('layouts.app-layout')
 
 @section('title', 'Авторизация')
 
@@ -16,7 +16,19 @@
                         @csrf
                         <div class="col-12 col-md-8">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" value="" required>
+                            <input
+                                type="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                name="email"
+                                id="email"
+                                value="{{ old('email') }}"
+                                required
+                            >
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="col-12 col-md-8">
                             <label for="password" class="form-label">Пароль</label>
