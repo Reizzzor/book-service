@@ -10,7 +10,7 @@
                     <h4 class="card-title text-center">Вход</h4>
                     <form
                         class="row g-3 justify-content-md-center card-text"
-                        action="{{ route('auth.login') }}"
+                        action="{{ route('user.auth.login') }}"
                         method="post"
                     >
                         @csrf
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-12 text-center">
                             <button class="btn btn-primary" type="submit">Войти</button>
-                            <a href="{{ route('register.index') }}" class="mx-3 card-link">Нет аккаунта?</a>
+                            <a href="{{ route('user.register.index') }}" class="mx-3 card-link">Нет аккаунта?</a>
                         </div>
                     </form>
                 </div>

@@ -10,7 +10,7 @@
                     <h4 class="card-title text-center">Регистрация</h4>
                     <form
                         class="row g-3 justify-content-md-center card-text"
-                        action="{{ route('register.store') }}"
+                        action="{{ route('user.register.store') }}"
                         method="post"
                     >
                         @csrf

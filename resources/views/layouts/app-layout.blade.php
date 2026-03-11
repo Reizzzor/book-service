@@ -41,8 +41,8 @@
                         </a>
                     @else
                         <a
-                            @class(['nav-link', 'active' => request()->routeIs('auth.index')])
-                            href="{{ route('auth.index') }}"
+                            @class(['nav-link', 'active' => request()->routeIs('user.auth.index')])
+                            href="{{ route('user.auth.index') }}"
                         >
                             Вход
                         </a>
