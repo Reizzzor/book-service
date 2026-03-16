@@ -18,7 +18,7 @@
                     [
                         'route' => '/',
                         'title' => 'Главная',
-                        'class' => ['nav-link', 'active' => request()->is('/')]
+                        'class' => ['nav-link', 'active' => isCurrentPath('/')]
                     ],
                     [
                         'route' => '/',
@@ -26,7 +26,6 @@
                         'class' => ['nav-link', 'active' => false]
                     ]
                 ] as $pathParams)
-
                     <li class="nav-item">
                         <a @class($pathParams['class']) aria-current="page" href="{{ $pathParams['route'] }}">
                             {{ $pathParams['title'] }}

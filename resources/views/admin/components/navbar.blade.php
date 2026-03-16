@@ -18,7 +18,7 @@
                     [
                         'route' => '/',
                         'title' => 'Главная',
-                        'class' => ['nav-link', 'active' => request()->is('/')]
+                        'class' => ['nav-link', 'active' => isCurrentPath('/')]
                     ],
                     [
                         'route' => '/',
@@ -26,9 +26,9 @@
                         'class' => ['nav-link', 'active' => false]
                     ],
                     [
-                        'route' => '/',
+                        'route' => route('admin.books.index'),
                         'title' => 'Книги',
-                        'class' => ['nav-link', 'active' => false]
+                        'class' => ['nav-link', 'active' => isCurrentRoute('admin.books.index')]
                     ],
                 ] as $pathParams)
                     <li class="nav-item">
