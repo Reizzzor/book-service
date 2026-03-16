@@ -16,14 +16,14 @@
             <ul class="navbar-nav">
                 @foreach([
                     [
-                        'route' => '/',
-                        'title' => 'Главная',
-                        'class' => ['nav-link', 'active' => isCurrentPath('/')]
+                        'route' => route('user.books.index'),
+                        'title' => 'Книги',
+                        'class' => ['nav-link', 'active' => isCurrentRoute('user.books.index')]
                     ],
                     [
-                        'route' => '/',
+                        'route' => route('user.books.subscriptions'),
                         'title' => 'Подписки',
-                        'class' => ['nav-link', 'active' => false]
+                        'class' => ['nav-link', 'active' => isCurrentRoute('user.books.subscriptions')]
                     ]
                 ] as $pathParams)
                     <li class="nav-item">

@@ -22,10 +22,10 @@ class BooksController extends Controller
 
     public function store(BookRequest $request)
     {
-        app(BookService::class)->create($request->validated());
+        $book = app(BookService::class)->create($request->validated());
 
         return redirect()->route('admin.books.index')->with([
-            'success' => 'Книга успешно добавлена',
+            'success' => "Книга [$book->title] успешно добавлена",
         ]);
     }
 

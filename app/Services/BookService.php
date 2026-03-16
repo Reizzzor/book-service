@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\BookPriceReducedEvent;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
 
@@ -24,15 +25,17 @@ class BookService
         });
     }
 
-    public function update(array $params): Book
+    public function update(array $params): void
     {
-        return DB::transaction(function () use ($params) {
+        $oldPrice = $this->book->price;
+        DB::transaction(function () use ($params) {
             $this->book->fill($params);
             $this->book->save();
 
             $this->book->authors()->sync($params['author_ids']);
-
-            return $this->book;
         });
+        if ($this->book->price < $oldPrice) {
+            event(new BookPriceReducedEvent($this->book, $oldPrice));
+        }
     }
 }

@@ -31,6 +31,13 @@ class Book extends Model
         return "$this->price руб.";
     }
 
+    public function scopeWithAuthor($query, int|string $authorId)
+    {
+        $query->whereHas('authors', function ($query) use ($authorId) {
+            $query->where('authors.id', $authorId);
+        });
+    }
+
     public function authors(): BelongsToMany
     {
         return $this->belongsToMany(Author::class);
