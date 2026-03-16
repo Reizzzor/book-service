@@ -17,6 +17,11 @@
     @include('components.navbar')
 @endif
 <div class="container mt-3">
+    @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     @yield('body')
 </div>
 </body>

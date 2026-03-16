@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Author extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'surname',
+        'first_name',
+        'last_name',
+    ];
+
+    public function getFullName()
+    {
+        return collect($this->only(['surname', 'first_name', 'last_name']))->filter()->join(' ');
+    }
+
+    public function books(): BelongsToMany
+    {
+        return $this->belongsToMany(Book::class);
+    }
+}
