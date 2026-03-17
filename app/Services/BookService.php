@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class BookService
 {
-    public function __construct(private Book $book)
+    public function __construct(private ?Book $book = null)
     {
     }
 
