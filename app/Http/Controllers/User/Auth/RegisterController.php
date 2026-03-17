@@ -10,13 +10,13 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('auth.register');
+        return view('user.auth.register');
     }
 
     public function store(ProfileRequest $request)
     {
         app(UserService::class)->create($request->validated());
 
-        return redirect()->route('auth.index');
+        return redirect()->route('user.auth.index');
     }
 }
